@@ -7,6 +7,6 @@ router.post("/signup", users.signup);
 
 router.post("/login", users.login);
 
-router.get("/home/users", verify, users.getLimitUsers);
+router.get("/home/users", verify, users.getAlltUsers);
 
 module.exports = router;

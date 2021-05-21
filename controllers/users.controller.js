@@ -86,7 +86,7 @@ exports.login = async (req, res) => {
   })
 };
 
-exports.getLimitUsers = async (req, res) => {
+exports.getAlltUsers = async (req, res) => {
   // const id = req.body.userId;
   connection.query("SELECT * FROM users ", (err, results) => {
     if (err) {
