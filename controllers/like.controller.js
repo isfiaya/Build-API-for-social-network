@@ -35,14 +35,13 @@ exports.sendLike = async (req, res) => {
 exports.getLikes = async (req, res) => {
     const postId = req.body.postId;
 
-    connection.query("SELECT * FROM likes WHERE postId=?", postId, (error, results) => {
+    connection.query("SELECT * FROM likes", (error, results) => {
         if (error) {
             return res.status(400).json({
                 message: error
             })
         }
         if (results) {
-            console.log("you get the post liked");
             return res.status(200).send(results)
         }
     })
