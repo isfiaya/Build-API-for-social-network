@@ -5,6 +5,8 @@ const like = require("../controllers/like.controller")
 
 router.post("/home/like", verify, like.sendLike);
 
+router.get("/home/like", verify, like.getLikes);
+
 
 
 
