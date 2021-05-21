@@ -15,8 +15,15 @@ exports.sendLike = async (req, res) => {
             })
         }
         if (results.length) {
-            return res.status(200).json({
-                message: "you can't like the same post twice!"
+            return connection.query("DELETE FROM likes WHERE id=?", results[0].id, (error, results) => {
+                if (error) {
+                    res.status(400).send({
+                        message: "you can't delete your likes!"
+                    })
+                }
+                if (results) {
+                    res.status(200).send({ message: "you delete your like ! " })
+                }
             })
         }
         if (!results.length) {
