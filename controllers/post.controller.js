@@ -68,15 +68,15 @@ exports.submitPost = async (req, res) => {
 }
 
 
-// exports.getAllPost = async (req, res) => {
+exports.getAllPost = async (req, res) => {
 
-//     connection.query("SELECT * FROM post ORDER BY id DESC;", (err, results) => {
-//         if (err) {
-//             res.send('something wrong!')
-//         }
-//         if (results) {
-//             res.send(results)
-//         }
-//     })
-// }
+    connection.query("SELECT * FROM post ORDER BY id DESC;", (err, results) => {
+        if (err) {
+            res.send('something wrong!')
+        }
+        if (results) {
+            res.send(results)
+        }
+    })
+}
 

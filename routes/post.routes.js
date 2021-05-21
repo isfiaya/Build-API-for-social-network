@@ -7,7 +7,7 @@ const multer = require('../multer-config');
 
 router.post("/home", verify, multer, post.submitPost);
 
-// router.get("/home", verify, post.getAllPost);
+router.get("/home", verify, post.getAllPost);
 
 
 
