@@ -17,12 +17,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const userRoutes = require("./routes/users.routes.js");
 const postRoutes = require("./routes/post.routes.js");
 const likeRoutes = require("./routes/like.routes.js");
+const commentRoutes = require("./routes/comment.routes");
 
 // Route MiddLewares
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(userRoutes);
 app.use(postRoutes);
 app.use(likeRoutes);
+app.use(commentRoutes);
 
 
 
