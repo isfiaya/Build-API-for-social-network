@@ -19,10 +19,14 @@ exports.sendLike = async (req, res) => {
                 if (error) {
                     res.status(400).send({
                         message: "you can't delete your likes!"
+
                     })
                 }
                 if (results) {
-                    res.status(200).send({ message: "you delete your like ! " })
+                    res.status(200).json({
+                        message: "you delete your like ! ",
+                        like: false
+                    })
                 }
             })
         }
@@ -32,7 +36,10 @@ exports.sendLike = async (req, res) => {
                     res.send(error)
                 }
                 if (results) {
-                    res.status(200).send("thanks for like !")
+                    res.status(200).json({
+                        message: "thanks for like !",
+                        like: true
+                    })
                 }
             })
         }
