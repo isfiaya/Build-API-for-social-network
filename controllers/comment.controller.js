@@ -19,3 +19,16 @@ exports.submitComment = async (req, res) => {
         }
     })
 }
+
+exports.getComment = async (req, res) => {
+
+    connection.query("SELECT * FROM comments", (error, results) => {
+        if (error) {
+            res.status(400).send(error)
+        }
+        if (results) {
+            res.status(200).send(results)
+        }
+    })
+
+}
