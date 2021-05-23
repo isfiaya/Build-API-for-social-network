@@ -9,6 +9,8 @@ router.post("/home", verify, multer, post.submitPost);
 
 router.get("/home", verify, post.getAllPost);
 
+router.delete("/home", verify, post.deletePost);
+
 
 
 

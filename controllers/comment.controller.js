@@ -37,11 +37,15 @@ exports.deleteComment = async (req, res) => {
   const id = req.body.idComment;
   connection.query(`DELETE FROM comments WHERE id = ?`, [id], (error, results) => {
     if (error) {
-      return res.status(400).json(error)
+      return res.json({
+        message: "you have error in deleteComment",
+        error: error
+      })
     }
     if (results) {
-      return res.status(200).json({
-        message: "comment deleted!"
+      return res.json({
+        message: "comment deleted!",
+        results: results
       })
     }
   })
