@@ -9,7 +9,7 @@ router.post("/home", verify, multer, post.submitPost);
 
 router.get("/home", verify, post.getAllPost);
 
-router.get("/home/profile", verify, post.getSpecificPost);
+router.post("/home/profile", verify, post.getSpecificPost);
 
 router.delete("/home", verify, post.deletePost);
 
