@@ -104,3 +104,15 @@ exports.deletePost = async (req, res) => {
     }
   })
 }
+
+exports.getSpecificPost = async (req, res) => {
+  const id = req.body.id;
+  connection.query("SELECT * FROM post WHERE userId = ?", id, (error, results) => {
+    if (error) {
+      return res.status(400).send(error)
+    }
+    if (results) {
+      res.status(200).send(results)
+    }
+  })
+}
