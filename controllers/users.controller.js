@@ -98,3 +98,21 @@ exports.getAlltUsers = async (req, res) => {
     }
   })
 }
+
+exports.submitUserImage = async (req, res) => {
+  const url = req.protocol + '://' + req.get('host');
+  const image = url + '/images/' + req.file.filename;
+  const id = req.body.id;
+
+  connection.query("UPDATE users SET imageUser = ? WHERE id = ?", [image, id], (error, results) => {
+    if (error) {
+      res.send({
+        message: "you can't update the images",
+        error: error
+      })
+    }
+    if (results) {
+      res.send("your image update successfully !")
+    }
+  })
+}
