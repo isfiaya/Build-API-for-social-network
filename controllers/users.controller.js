@@ -116,3 +116,15 @@ exports.submitUserImage = async (req, res) => {
     }
   })
 }
+
+exports.deleteImageProfile = async (req, res) => {
+  const id = req.body.id;
+  connection.query("UPDATE users SET imageUser = NULL WHERE id = ?", id, (error, results) => {
+    if (error) {
+      res.send(error)
+    }
+    if (results) {
+      res.send("image profile deleted !")
+    }
+  })
+}
