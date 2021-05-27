@@ -10,6 +10,8 @@ router.post("/login", users.login);
 
 router.get("/home/users", verify, users.getAlltUsers);
 
+router.post("/home/users", verify, users.getOneUser);
+
 router.post("/home/users/images", verify, multer, users.submitUserImage);
 
 router.delete("/home/users/images", verify, users.deleteImageProfile);

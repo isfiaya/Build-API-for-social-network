@@ -128,3 +128,15 @@ exports.deleteImageProfile = async (req, res) => {
     }
   })
 }
+
+exports.getOneUser = async (req, res) => {
+  const id = req.body.id
+  connection.query("SELECT * FROM users WHERE id =?", id, (error, results) => {
+    if (error) {
+      res.send(error)
+    }
+    if (results) {
+      res.send(results)
+    }
+  })
+}
