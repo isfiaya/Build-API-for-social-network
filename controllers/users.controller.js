@@ -2,6 +2,7 @@ const connection = require('../config/db.config')
 const { signupValidation, loginValidation } = require('../validation');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { date } = require('joi');
 
 exports.signup = async (req, res) => {
 
@@ -139,4 +140,23 @@ exports.getOneUser = async (req, res) => {
       res.send(results)
     }
   })
+}
+
+exports.editInfo = async (req, res) => {
+  const dateBrith = req.body.dateBrith;
+  const gender = req.body.gender;
+  const city = req.body.city;
+  const country = req.body.country;
+  const id = req.body.id;
+
+  connection.query("UPDATE users SET dateBrith = ? , city = ? , country = ? , gender = ? WHERE id = ? ", [dateBrith, city, country, gender, id], (error, results) => {
+
+    if (error) {
+      res.send(error)
+    }
+    if (results) {
+      res.send({ message: "data updated successfully!" })
+    }
+  })
+
 }

@@ -14,6 +14,8 @@ router.post("/home/users", verify, users.getOneUser);
 
 router.post("/home/users/images", verify, multer, users.submitUserImage);
 
+router.post("/home/users/info", verify, users.editInfo);
+
 router.delete("/home/users/images", verify, users.deleteImageProfile);
 
 module.exports = router;
