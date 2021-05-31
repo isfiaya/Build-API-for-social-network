@@ -160,3 +160,17 @@ exports.editInfo = async (req, res) => {
   })
 
 }
+
+exports.deleteAccount = async (req, res) => {
+  const id = req.body.id;
+  connection.query("DELETE FROM `users` WHERE id=?", id, (error, results) => {
+    if (error) {
+      res.send(error)
+    }
+    if (results) {
+      res.send({
+        message: "account deleted successfully!"
+      })
+    }
+  })
+}
