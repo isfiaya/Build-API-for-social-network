@@ -58,6 +58,16 @@ exports.editComment = async (req, res) => {
     if (error) {
       res.send(error)
     }
+    if (!comment) {
+      return connection.query("DELETE FROM `comments` WHERE id=?", id, (error, results) => {
+        if (error) {
+          res.send(error)
+        }
+        if (results) {
+          res.send("your comment deleted!")
+        }
+      })
+    }
     if (results) {
       res.send("comment updated successfully")
     }
