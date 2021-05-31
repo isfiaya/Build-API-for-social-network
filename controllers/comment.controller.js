@@ -50,3 +50,16 @@ exports.deleteComment = async (req, res) => {
     }
   })
 }
+
+exports.editComment = async (req, res) => {
+  const id = req.body.id;
+  const comment = req.body.comment;
+  connection.query("UPDATE comments SET comment = ? WHERE id = ?", [comment, id], (error, results) => {
+    if (error) {
+      res.send(error)
+    }
+    if (results) {
+      res.send("comment updated successfully")
+    }
+  })
+}

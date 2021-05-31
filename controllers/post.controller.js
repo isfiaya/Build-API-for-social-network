@@ -12,18 +12,18 @@ exports.submitPost = async (req, res) => {
     this.last_name = post.last_name
   }
 
-  if (!req.body.message) {
+  // if (!req.body.message) {
 
-    return res.status(400).json({
-      messsage: "you can't submit empty post!"
-    })
+  //   return res.status(400).json({
+  //     messsage: "you can't submit empty post!"
+  //   })
 
-  }
-  if (req.body.message.length <= 10) {
-    return res.status(400).json({
-      message: "your post is very tiny "
-    })
-  }
+  // }
+  // if (req.body.message.length <= 10) {
+  //   return res.status(400).json({
+  //     message: "your post is very tiny "
+  //   })
+  // }
   if (req.file) {
     const url = req.protocol + '://' + req.get('host');
     // Creat New Post
@@ -45,7 +45,7 @@ exports.submitPost = async (req, res) => {
       }
     });
   }
-  if (req.body.message.length > 10) {
+  if (req.body.message) {
     // Creat New Post
     const newPost = new Post({
       message: req.body.message,
