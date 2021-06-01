@@ -174,3 +174,21 @@ exports.deleteAccount = async (req, res) => {
     }
   })
 }
+
+exports.submitCoverImg = async (req, res) => {
+  const url = req.protocol + '://' + req.get('host');
+  const image = url + '/images/' + req.file.filename;
+  const id = req.body.id;
+
+  connection.query("UPDATE users SET imgCover = ? WHERE id = ?", [image, id], (error, results) => {
+    if (error) {
+      res.send({
+        message: "you can't update the cover image",
+        error: error
+      })
+    }
+    if (results) {
+      res.send("your cover image update successfully !")
+    }
+  })
+}
