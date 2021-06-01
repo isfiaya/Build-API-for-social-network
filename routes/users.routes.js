@@ -20,6 +20,8 @@ router.post("/home/users/info", verify, users.editInfo);
 
 router.delete("/home/users/images", verify, users.deleteImageProfile);
 
+router.delete("/home/users/images/cover", verify, users.deleteCoverImg);
+
 router.delete("/home/users/info", verify, users.deleteAccount);
 
 module.exports = router;

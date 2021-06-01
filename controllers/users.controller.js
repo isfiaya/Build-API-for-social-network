@@ -192,3 +192,15 @@ exports.submitCoverImg = async (req, res) => {
     }
   })
 }
+
+exports.deleteCoverImg = async (req, res) => {
+  const id = req.body.id;
+  connection.query("UPDATE users SET imgCover = NULL WHERE id = ?", id, (error, results) => {
+    if (error) {
+      res.send(error)
+    }
+    if (results) {
+      res.send("cover image deleted !")
+    }
+  })
+}
