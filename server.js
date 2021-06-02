@@ -6,6 +6,12 @@ const path = require('path');
 const app = express();
 
 app.use(cors());
+app.use((req, res, next) => {
+    res.setHeader('Acces-Control-Allow-Origin', '*');
+    res.setHeader('Acces-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Acces-Contorl-Allow-Methods', 'Content-Type', 'Authorization');
+    next();
+})
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
