@@ -64,7 +64,7 @@ exports.login = async (req, res) => {
       // Checking Password
       const comparision = await bcrypt.compare(password, results[0].password)
       // Create a token  
-      const token = jwt.sign({ id: results[0].id }, process.env.azertyuiop)
+      const token = jwt.sign({ id: results[0].id }, process.env.TOKEN_SECRET)
       res.header('Authorization', token);
 
       if (comparision) {
