@@ -24,4 +24,7 @@ router.delete("/home/users/images/cover", verify, users.deleteCoverImg);
 
 router.delete("/home/users/info", verify, users.deleteAccount);
 
+router.post("/home/users/search", verify, users.searchUsers);
+
+
 module.exports = router;

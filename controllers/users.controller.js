@@ -204,3 +204,16 @@ exports.deleteCoverImg = async (req, res) => {
     }
   })
 }
+
+exports.searchUsers = async (req, res) => {
+  const words = req.body.words;
+  const searchWords = words + '%'
+  connection.query("SELECT * FROM `users` WHERE first_name LIKE ?", searchWords, (error, results) => {
+    if (error) {
+      res.send(error)
+    }
+    if (results) {
+      res.send(results)
+    }
+  })
+}
