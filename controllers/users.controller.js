@@ -2,17 +2,21 @@ const connection = require('../config/db.config')
 const { signupValidation, loginValidation } = require('../validation');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { date } = require('joi');
+// const { date } = require('joi');
 
 exports.signup = async (req, res) => {
+
 
   // Validate the data 
   const { error } = signupValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
+
   // Hash passwords
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+
 
   // constructor
   const Users = function (user) {
@@ -31,20 +35,36 @@ exports.signup = async (req, res) => {
   });
 
   // Save user in the database
-  connection.query("INSERT INTO users SET ?", user, (error, result) => {
+  // Check if email exist in db
+  const email = req.body.email;
+  connection.query("SELECT * FROM users WHERE email=?", email, async (error, results) => {
     if (error) {
-      console.log("error:", err);
-      res.status(400).json({
-        message: error
-      })
+      return res.send(error)
     }
-    if (result) {
-      res.status(200).json({
-        message: "Account successfully created "
-      })
+    if (results) {
+      if (results.length) {
+        return res.send({
+          message: "email exist:",
+          email: false
+        })
+      }
+      else {
+        connection.query("INSERT INTO users SET ?", user, (error, result) => {
+          if (error) {
+            res.send({
+              message: error
+            })
+          }
+          if (result) {
+            res.status(200).json({
+              message: "Account successfully created "
+            })
+          }
+        });
+      }
     }
   });
-};
+}
 
 
 exports.login = async (req, res) => {
@@ -64,7 +84,7 @@ exports.login = async (req, res) => {
       // Checking Password
       const comparision = await bcrypt.compare(password, results[0].password)
       // Create a token  
-      const token = jwt.sign({ id: results[0].id }, process.env.TOKEN_SECRET)
+      const token = jwt.sign({ id: results[0].id }, process.env.TOKEN_SECRET);
       res.header('Authorization', token);
 
       if (comparision) {
