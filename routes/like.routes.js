@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const verify = require('../verifyToken');
+// const verify = require('../verifyToken');
 const like = require("../controllers/like.controller")
 
-router.post("/home/like", verify, like.sendLike);
+router.post("/home/like", like.sendLike);
 
-router.get("/home/like", verify, like.getLikes);
+router.get("/home/like", like.getLikes);
 
 
 
