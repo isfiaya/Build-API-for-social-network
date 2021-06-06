@@ -5,13 +5,13 @@ const post = require("../controllers/post.controller");
 const multer = require('../multer-config');
 
 
-router.post("/home", multer, post.submitPost);
+router.post("", multer, post.submitPost);
 
-router.get("/home", post.getAllPost);
+router.get("", post.getAllPost);
 
-router.post("/home/profile", post.getSpecificPost);
+router.post("/profile", post.getSpecificPost);
 
-router.delete("/home", post.deletePost);
+router.delete("", post.deletePost);
 
 
 
