@@ -163,13 +163,15 @@ exports.getOneUser = async (req, res) => {
 }
 
 exports.editInfo = async (req, res) => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const dateBrith = req.body.dateBrith;
   const gender = req.body.gender;
   const city = req.body.city;
   const country = req.body.country;
   const id = req.body.id;
 
-  connection.query("UPDATE users SET dateBrith = ? , city = ? , country = ? , gender = ? WHERE id = ? ", [dateBrith, city, country, gender, id], (error, results) => {
+  connection.query("UPDATE users SET first_name = ? , last_name = ? , dateBrith = ? , city = ? , country = ? , gender = ? WHERE id = ? ", [firstName, lastName, dateBrith, city, country, gender, id], (error, results) => {
 
     if (error) {
       res.send(error)
