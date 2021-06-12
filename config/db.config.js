@@ -2,10 +2,10 @@ const mysql = require("mysql");
 
 // Create a connection to the database
 const connection = mysql.createConnection({
-  host: "sql4.freesqldatabase.com",
-  user: "sql4417165",
-  password: "KrEsm16xyJ",
-  database: "sql4417165",
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "groupmonia",
   port: 3306
 });
 
